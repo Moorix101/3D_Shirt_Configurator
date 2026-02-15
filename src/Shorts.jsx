@@ -4,10 +4,9 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function Shorts({ colors, ...props }) {
-  // Load the model - make sure this filename matches your public folder
   const { nodes, materials } = useGLTF('/shorts.glb')
 
-  // Clone materials so the shorts can have their own colors
+  // Keep both materials separate in memory so they can have different textures/roughness
   const bodyMaterial = useMemo(() => 
     materials.Material ? materials.Material.clone() : new THREE.MeshStandardMaterial()
   , [materials.Material])
@@ -17,20 +16,16 @@ export default function Shorts({ colors, ...props }) {
   , [materials.Trim_Material])
 
   useFrame((state, delta) => {
-    // Smoothly interpolate the colors just like the Polo Shirt
-    const bodyColor = new THREE.Color(colors.body)
-    const trimColor = new THREE.Color(colors.trims)
+    // SMART FIX: Use 'colors.body' for BOTH materials
+    const activeColor = new THREE.Color(colors.body)
     
-    bodyMaterial.color.lerp(bodyColor, delta * 4)
-    trimMaterial.color.lerp(trimColor, delta * 4)
+    bodyMaterial.color.lerp(activeColor, delta * 4)
+    trimMaterial.color.lerp(activeColor, delta * 4)
   })
 
   return (
     <group {...props} dispose={null} rotation={[0, 0, 0]}>
       <Center>
-        {/* IMPORTANT: These names must match your Blender Outliner exactly.
-            If Blender says "Short_Body", use nodes.Short_Body.
-        */}
         {nodes.Shorts_Body && (
           <mesh geometry={nodes.Shorts_Body.geometry} material={bodyMaterial} />
         )}

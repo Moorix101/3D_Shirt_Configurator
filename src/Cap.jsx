@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function Cap({ colors, ...props }) {
-  const { nodes } = useGLTF('/cap.glb')
+  const { nodes } = useGLTF('/capNoLogo.glb')
 
   const material = useMemo(() => {
     if (nodes.Cap && nodes.Cap.material) return nodes.Cap.material.clone()
@@ -23,4 +23,4 @@ export default function Cap({ colors, ...props }) {
   )
 }
 
-useGLTF.preload('/cap.glb')
+useGLTF.preload('/capNoLogo.glb')
