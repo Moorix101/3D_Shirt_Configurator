@@ -1,16 +1,81 @@
-# React + Vite
+# 👕 3D Premium Collection Configurator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-end, real-time **3D product customization platform** built with **React**, **Three.js**, and **Tailwind CSS v4**.  
+This tool lets users seamlessly switch between a **Polo Shirt**, **Cap**, and **Shorts**, with dynamic color control and custom logo placement.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Key Features
 
-## React Compiler
+### 🎽 Multi-Product Selection
+Seamlessly switch between customizing:
+- Polo Shirt  
+- Cap  
+- Shorts  
+using a simple UI toggle.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🎨 Dynamic Color Control
+Independent color customization for specific parts:
 
-## Expanding the ESLint configuration
+- **Polo Shirt**
+  - Body
+  - Collar
+  - Buttons
+  - Trims
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Cap**
+  - Body
+
+- **Shorts**
+  - Body
+  - Trims
+
+### 🖼️ Interactive Logo Placement
+- Upload **PNG** or **SVG** logos  
+- Real-time adjustment:
+  - Position (X, Y, Z)
+  - Scale
+  - Rotation
+
+## 🧪 Logo System Status (Beta / WIP)
+
+The logo upload and placement system is currently **functional but rough** and still under active development.
+
+### ⚠️ Current Limitations
+- Inconsistent logo placement on the shirt surface  
+- Manual tweaking required for position (X, Y, Z)  
+- Scaling can feel unintuitive  
+- Rotation is not always visually accurate  
+- UV mapping is not fully optimized  
+- Some logo distortions may occur depending on the image
+
+  
+🛠️ Technical Stack
+Framework: React (Vite)
+
+3D Engine: @react-three/fiber & @react-three/drei
+
+Styling: Tailwind CSS v4
+
+Math / Core: Three.js
+
+📦 Installation & Setup
+1️⃣ Clone the Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+```
+```bash
+cd polo-configurator
+```
+2️⃣ Install Dependencies
+```
+npm install
+```
+3️⃣ Required Assets
+Ensure the following models exist inside the /public folder:
+
+4️⃣ Launch the Development Server
+
+```bash
+npm run dev
+```
