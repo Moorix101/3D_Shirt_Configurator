@@ -62,10 +62,10 @@ Math / Core: Three.js
 📦 Installation & Setup
 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git clone https://github.com/Moorix101/3D_Shirt_Configurator.git
 ```
 ```bash
-cd polo-configurator
+cd 3D_Shirt_Configurator
 ```
 2️⃣ Install Dependencies
 ```
