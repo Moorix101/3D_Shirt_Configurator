@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function Shorts({ colors, ...props }) {
-  const { nodes, materials } = useGLTF('/shorts.glb')
+  const { nodes, materials } = useGLTF('/shorts2.glb')
 
   // Keep both materials separate in memory so they can have different textures/roughness
   const bodyMaterial = useMemo(() => 
@@ -24,7 +24,7 @@ export default function Shorts({ colors, ...props }) {
   })
 
   return (
-    <group {...props} dispose={null} rotation={[0, 0, 0]}>
+    <group {...props} dispose={null} rotation={[Math.PI / 2, 0, 0]}>
       <Center>
         {nodes.Shorts_Body && (
           <mesh geometry={nodes.Shorts_Body.geometry} material={bodyMaterial} />
@@ -37,4 +37,4 @@ export default function Shorts({ colors, ...props }) {
   )
 }
 
-useGLTF.preload('/shorts.glb')
+useGLTF.preload('/shorts2.glb')
