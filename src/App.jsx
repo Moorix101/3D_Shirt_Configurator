@@ -23,7 +23,6 @@ export default function App() {
     },
     shorts: {
       body: '#ffffff',
-      drawstring: '#1a1a1a'
     }
   })
   const [currentModel, setCurrentModel] = useState('polo')
@@ -161,12 +160,6 @@ export default function App() {
               options={['#ffffff', '#000000', '#1e3a8a', '#b91c1c']} />
           )}
 
-          {currentModel === 'shorts' && (
-            <Section label="Drawstring" active={modelColors.shorts.drawstring} 
-              onSelect={(c) => updateColor('drawstring', c)} 
-              options={['#1a1a1a', '#ffffff', '#4b5563', '#b91c1c']} />
-          )}
-            
           {currentModel === 'polo' && (
             <Section label="Buttons" active={modelColors.polo.buttons} 
               onSelect={(c) => updateColor('buttons', c)} 

@@ -1,42 +1,35 @@
 import React, { useMemo } from 'react'
-import { useGLTF, Center } from '@react-three/drei' //
+import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function Shorts({ colors, ...props }) {
-  const { nodes, materials } = useGLTF('/shorts3.glb')
+  // 1. Load the new model
+  const { scene } = useGLTF('/shortSYOUR.glb')
+  console.log('Shorts loaded: /shortSYOUR.glb')
 
-  const bodyMaterial = useMemo(() => 
-    materials.Material ? materials.Material.clone() : new THREE.MeshStandardMaterial()
-  , [materials.Material])
+  // 2. Create a single material to be shared by all parts
+  const masterMaterial = useMemo(() => new THREE.MeshStandardMaterial(), [])
 
-  const drawstringMaterial = useMemo(() => 
-    materials.Drawstring_Material ? materials.Drawstring_Material.clone() : new THREE.MeshStandardMaterial()
-  , [materials.Drawstring_Material])
+  // 3. Traverse the scene and assign materials
+  useMemo(() => {
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        child.material = masterMaterial
+      }
+    })
+  }, [scene, masterMaterial])
 
   useFrame((state, delta) => {
     const bodyColor = new THREE.Color(colors.body)
-    const drawstringColor = new THREE.Color(colors.drawstring || '#ffffff')
-    
-    bodyMaterial.color.lerp(bodyColor, delta * 4)
-    drawstringMaterial.color.lerp(drawstringColor, delta * 4)
+    masterMaterial.color.lerp(bodyColor, delta * 4)
   })
-
-  // We look for 'Shorts_Body' or any mesh that might be the main part
-  const bodyMesh = nodes.Shorts_Body || nodes.Short_Body || nodes.Shorts; //
 
   return (
     <group {...props} dispose={null} rotation={[0, 0, 0]}>
-      <Center top> {/* This forces the model to stay centered and above ground */}
-        {bodyMesh && (
-          <mesh geometry={bodyMesh.geometry} material={bodyMaterial} />
-        )}
-        {nodes.Drawstring && (
-          <mesh geometry={nodes.Drawstring.geometry} material={drawstringMaterial} />
-        )}
-      </Center>
+      <primitive object={scene} />
     </group>
   )
 }
 
-useGLTF.preload('/shorts3.glb')
+useGLTF.preload('/shortSYOUR.glb')
