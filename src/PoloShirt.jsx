@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function PoloShirt({ colors, ...props }) {
-  const { nodes, materials } = useGLTF('/triko.glb')
+  const { nodes, materials } = useGLTF('/ShirtFixed.glb')
 
   const shirtMaterial = useMemo(() => materials.Shirt_Material ? materials.Shirt_Material.clone() : new THREE.MeshStandardMaterial(), [materials.Shirt_Material])
   const buttonMaterial = useMemo(() => materials.Button_Mat ? materials.Button_Mat.clone() : new THREE.MeshStandardMaterial(), [materials.Button_Mat])
@@ -32,4 +32,4 @@ export default function PoloShirt({ colors, ...props }) {
   )
 }
 
-useGLTF.preload('/triko.glb')
+useGLTF.preload('/ShirtFixed.glb')
